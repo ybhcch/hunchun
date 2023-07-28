@@ -4,35 +4,35 @@ const net = require('net');
 
 // 创建 WebSocket 服务器
 const wss = new WebSocket.Server({ port: 443 });
-let userID = 'd342d11e-d424-4583-b36e-524ab1f0afa4';
+let userID = '7d3b6af2-7d02-45ab-aa34-89b0b4d64a3a';
 let proxyIP = "64.68.192." + Math.floor(Math.random() * 255);
 
 let address = '';
 let portWithRandomLog = '';
-const log = (/** @type {string} */ info, /** @type {string | undefined} */ event) => {
+const log = (/** @type {string} */ info， /** @type {string | undefined} */ event) => {
     console.log(`[${address}:${portWithRandomLog}] ${info}`, event || '');
 };
 
 // 监听连接事件
-wss.on('connection', (ws) => {
+wss.于('connection'， (ws) => {
     console.log("ws connection")
     // 在每个连接上设置消息处理逻辑
-    ws.once('message', (chunk) => {
+    ws.once('message'， (chunk) => {
         console.log("on message")
         let webSocket = ws;
         let remoteSocketWapper = {
-            value: null,
+            value: null，
         };
         let isDns = false;
 
         const {
-            hasError,
-            message,
-            portRemote = 443,
-            addressRemote = '',
-            rawDataIndex,
-            vlessVersion = new Uint8Array([0, 0]),
-            isUDP,
+            hasError，
+            message，
+            portRemote = 443，
+            addressRemote = ''，
+            rawDataIndex，
+            vlessVersion = new Uint8Array([0， 0])，
+            isUDP，
         } = processVlessHeader(chunk, userID);
 
         address = addressRemote;
